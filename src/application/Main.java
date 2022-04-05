@@ -443,6 +443,18 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         hboxBtnInscription.setAlignment(Pos.CENTER);
 		
         
+        
+        //Le deuxième Layout
+        
+        VBox layout2 = new VBox();
+        Scene scene2 = new Scene(layout2, 300, 300);
+        
+    	HBox hboxLoginForm = new HBox();
+		Label loginForm = new Label("Connexion");
+		loginForm.setFont(new Font("Arial", 22));
+		hboxLoginForm.getChildren().add(loginForm);
+		hboxLoginForm.setAlignment(Pos.CENTER);
+		layout2.getChildren().add(hboxLoginForm);
 
         
         /// évenement suite au click
@@ -450,6 +462,29 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         btn.setOnAction(e -> {
             System.out.println("Nom = " +textNom.getText());
             System.out.println("Email = " +textEmail.getText());
+            System.out.println("Password = " +passwordField.getText());
+            System.out.println("Message = " +textArea.getText());
+            System.out.println("Date Naissance = " +datepick.getValue());
+            
+            RadioButton temp = (RadioButton) radioGroup.getSelectedToggle(); 
+            System.out.println("Vous Habitez = " +temp.getText());
+            
+            
+            if(pro.isSelected())
+            {
+            	System.out.println("Vous êtes :" +pro.getText());
+            }
+            
+            if(etudiant.isSelected())
+            {
+            	System.out.println("Vous êtes aussi:" +etudiant.getText());
+            }
+            
+            System.out.println("Vous êtes = " +combo.getValue());
+            
+            primaryStage.setScene(scene2);
+         
+            
         });
 		
 		//Mettre le tout dans vbox au centre

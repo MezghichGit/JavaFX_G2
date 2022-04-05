@@ -21,6 +21,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -320,6 +321,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         primaryStage.setScene(scene);   
         primaryStage.show(); */
 		
+		/*
 		VBox layout = new VBox();
         Scene scene = new Scene(layout, 300, 300);  
          
@@ -339,7 +341,99 @@ public class Main extends Application implements EventHandler<ActionEvent> {
      
         primaryStage.setTitle("CodersLegacy");
         primaryStage.setScene(scene);   
+        primaryStage.show();*/
+		
+		
+		// Exercice 2
+		
+		
+		//Partie centrale du formulaire
+		VBox vbox = new VBox();
+
+
+		Label titreForm = new Label("Formulaire d'inscription");
+		titreForm.setFont(new Font("Arial", 16));
+		
+		//Partie nom
+		HBox hboxNom = new HBox();
+		Label lNom = new Label("Nom : ");
+		TextField textNom = new TextField();
+		hboxNom.getChildren().addAll(lNom,textNom);
+		hboxNom.setAlignment(Pos.CENTER);
+		
+		//Partie email
+		HBox hboxEmail = new HBox();
+		Label lEmail = new Label("Email : ");
+		TextField textEmail = new TextField();
+		hboxEmail.getChildren().addAll(lEmail,textEmail);
+		hboxEmail.setAlignment(Pos.CENTER);
+		
+		//Partie Password
+		HBox hboxPassword = new HBox();
+		Label lPassword = new Label("Password : ");
+		PasswordField passwordField = new PasswordField();
+		hboxPassword.getChildren().addAll(lPassword,passwordField);
+		hboxPassword.setAlignment(Pos.CENTER);
+		
+		//Partie Status
+		HBox hboxStatus = new HBox();
+		Label lStatus = new Label("Status : ");
+		CheckBox pro = new CheckBox("Pro ");
+	    CheckBox etudiant = new CheckBox("Etudiant ");
+	        
+	    hboxStatus.getChildren().addAll(lStatus,pro,etudiant);
+	    hboxStatus.setAlignment(Pos.CENTER);
+		
+		
+		
+		//Mettre le tout dans vbox au centre
+		vbox.getChildren().addAll(titreForm,hboxNom,hboxEmail,hboxPassword,hboxStatus);
+		vbox.setSpacing(5);
+		
+		
+		
+		// Parties droite et gauche
+        Label label3 = new Label(""); 
+        Label label5 = new Label("");
+        
+        
+        //Partie Favicon
+        primaryStage.getIcons().add(new Image("C:\\Users\\amine\\Desktop\\Doc_Java_Fx\\logo.png"));
+        
+        // Partie Header(Logo)
+		FileInputStream stream = new FileInputStream("C:\\Users\\amine\\Desktop\\Doc_Java_Fx\\logo.png");
+		Image image = new Image(stream);
+		ImageView imageview = new ImageView(image);
+		
+        //Partie Footer(Copyright)
+        Label label4 = new Label("Copyright@ISKA 5-6-7 Avril 2022");
+             
+       
+  
+        
+        //partie entête 
+        
+        //HBox hbox = new HBox();
+        
+        //hbox.getChildren().addAll(label1);
+        
+        BorderPane layout = new BorderPane(vbox, imageview, label3, label4, label5);
+        layout.setPadding(new Insets(2, 2, 2, 2));  
+        
+        layout.setAlignment(label1, Pos.CENTER); 
+        //layout.setAlignment(label2, Pos.CENTER); 
+        layout.setAlignment(label3, Pos.CENTER); 
+        layout.setAlignment(label4, Pos.CENTER); 
+        layout.setAlignment(label5, Pos.CENTER); 
+        
+        Scene scene = new Scene(layout, 600, 400);  
+        
+        
+        primaryStage.setTitle("ISIKA Lab Day 1");
+        primaryStage.setScene(scene);   
         primaryStage.show();
+        
+      
     }
 	
 	@Override

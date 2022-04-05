@@ -16,6 +16,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -351,8 +352,11 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 		VBox vbox = new VBox();
 
 
+		HBox hboxTitreForm = new HBox();
 		Label titreForm = new Label("Formulaire d'inscription");
-		titreForm.setFont(new Font("Arial", 16));
+		titreForm.setFont(new Font("Arial", 22));
+		hboxTitreForm.getChildren().add(titreForm);
+		hboxTitreForm.setAlignment(Pos.CENTER);
 		
 		//Partie nom
 		HBox hboxNom = new HBox();
@@ -380,14 +384,76 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 		Label lStatus = new Label("Status : ");
 		CheckBox pro = new CheckBox("Pro ");
 	    CheckBox etudiant = new CheckBox("Etudiant ");
-	        
 	    hboxStatus.getChildren().addAll(lStatus,pro,etudiant);
 	    hboxStatus.setAlignment(Pos.CENTER);
+	    
+		//Partie Pays
+		HBox hboxPays = new HBox();
+		Label Pays = new Label("Pays : ");
+		ToggleGroup radioGroup = new ToggleGroup();
+		RadioButton paris = new RadioButton("Paris");
+		RadioButton autre = new RadioButton("Autre ");
+		paris.setToggleGroup(radioGroup);
+		autre.setToggleGroup(radioGroup);
+		hboxPays.getChildren().addAll(Pays,paris,autre);
+		hboxPays.setAlignment(Pos.CENTER);
+		
+		//Partie Statut Familiale
+		HBox hboxSF = new HBox();
+		Label SFamiliale = new Label("Vous êtes : ");
+	
+		ComboBox combo = new ComboBox();
+        combo.getItems().add("Célibataire");
+        combo.getItems().add("Marié");
+        combo.getItems().add("Divorcé");
+		
+        hboxSF.getChildren().addAll(SFamiliale,combo);
+        hboxSF.setAlignment(Pos.CENTER);
 		
 		
+		//Partie Date de naissance
+		HBox hboxNaissance = new HBox();
+		Label dateNaissance = new Label("Date Naissance : ");
+		DatePicker datepick = new DatePicker();
+		hboxNaissance.getChildren().addAll(dateNaissance,datepick);
+		hboxNaissance.setAlignment(Pos.CENTER);
+		
+		//Partie Remarque
+		HBox hboxMessage= new HBox();
+		Label message = new Label("Message : ");
+		TextArea textArea = new TextArea();
+		
+		double height = 150; 
+		double width = 210; 
+
+		//You can use these methods
+		textArea.setPrefHeight(height); 
+		textArea.setPrefWidth(width); 
+		
+		
+		hboxMessage.getChildren().addAll(message,textArea);
+		hboxMessage.setAlignment(Pos.CENTER);
+		
+		
+		
+		//Bouton inscription
+		HBox hboxBtnInscription = new HBox();
+        Button btn = new Button("Créer mon compte");
+        hboxBtnInscription.getChildren().add(btn);
+        hboxBtnInscription.setAlignment(Pos.CENTER);
+		
+        
+
+        
+        /// évenement suite au click
+        
+        btn.setOnAction(e -> {
+            System.out.println("Nom = " +textNom.getText());
+            System.out.println("Email = " +textEmail.getText());
+        });
 		
 		//Mettre le tout dans vbox au centre
-		vbox.getChildren().addAll(titreForm,hboxNom,hboxEmail,hboxPassword,hboxStatus);
+		vbox.getChildren().addAll(hboxTitreForm,hboxNom,hboxEmail,hboxPassword,hboxStatus,hboxPays,hboxSF,hboxNaissance,hboxMessage,hboxBtnInscription);
 		vbox.setSpacing(5);
 		
 		
@@ -420,7 +486,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         BorderPane layout = new BorderPane(vbox, imageview, label3, label4, label5);
         layout.setPadding(new Insets(2, 2, 2, 2));  
         
-        layout.setAlignment(label1, Pos.CENTER); 
+        layout.setAlignment(vbox, Pos.CENTER); 
         //layout.setAlignment(label2, Pos.CENTER); 
         layout.setAlignment(label3, Pos.CENTER); 
         layout.setAlignment(label4, Pos.CENTER); 
@@ -448,7 +514,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
     }
 	
 	public static void main(String[] args) {
-		System.out.println(Jour.JEUDI);
+		//System.out.println(Jour.JEUDI);
 		launch(args);
 	}
 }
